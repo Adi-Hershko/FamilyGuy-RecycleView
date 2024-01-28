@@ -7,6 +7,13 @@
     android:orientation="vertical"
     tools:context=".MainActivity" >
 
+    <Button
+        android:id="@+id/toggleSound"
+        android:layout_width="51dp"
+        android:layout_height="35dp"
+        android:onClick="toggleSound"
+        android:text="Button" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/res"
         android:layout_width="match_parent"

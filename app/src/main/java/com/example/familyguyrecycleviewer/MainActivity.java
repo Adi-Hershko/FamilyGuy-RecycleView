@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.annotation.SuppressLint;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.view.View;
 
 import java.util.ArrayList;
 
@@ -19,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
     private CustomAdapter adapter;
 
     private MediaPlayer media;
+    private boolean isPlaying = true; // Assuming the music starts playing initially
+
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -54,6 +57,17 @@ public class MainActivity extends AppCompatActivity {
         if (media != null) {
             media.release(); // Release MediaPlayer resources
             media = null;
+        }
+    }
+
+    public void toggleSound(View view) {
+        if (media != null) {
+            if (isPlaying) {
+                media.pause();
+            } else {
+                media.start();
+            }
+            isPlaying = !isPlaying; // Toggle the state
         }
     }
 }
