@@ -9,6 +9,7 @@ import android.annotation.SuppressLint;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 
 import java.util.ArrayList;
 
@@ -21,13 +22,17 @@ public class MainActivity extends AppCompatActivity {
 
     private MediaPlayer media;
     private boolean isPlaying = true; // Assuming the music starts playing initially
-
+    private Button tglButton ;
 
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        this.tglButton = findViewById(R.id.toggleSound);
+        this.tglButton.setBackgroundResource(R.drawable.resized_pause_icon);
         media = MediaPlayer.create(this, R.raw.familyguythemesong);
         media.setLooping(true);
         media.start();
@@ -51,6 +56,8 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
     }
 
+
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -63,8 +70,10 @@ public class MainActivity extends AppCompatActivity {
     public void toggleSound(View view) {
         if (media != null) {
             if (isPlaying) {
+                this.tglButton.setBackgroundResource(R.drawable.resized_play_icon);
                 media.pause();
             } else {
+                this.tglButton.setBackgroundResource(R.drawable.resized_pause_icon);
                 media.start();
             }
             isPlaying = !isPlaying; // Toggle the state
